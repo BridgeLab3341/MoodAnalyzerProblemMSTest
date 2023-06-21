@@ -8,16 +8,23 @@ namespace MoodAnalyzerProblemMSTest
 {
     public class Mood
     {
-        public string AnalyzeMood(string Mood)
+        string message;
+        public Mood()
         {
-            if(Mood.ToLower().Contains("sad"))
+            this.message=message;
+        }
+        public Mood(string message)
+        {
+            this.message = message;
+        }
+        public string AnalyzeMood()
+        {
+            if(this.message.ToLower().Contains("sad"))
             {
-                Console.WriteLine("Sad");
                 return "SAD";
             }
             else
             {
-                Console.WriteLine("happy");
                 return "HAPPY";
             }
         }

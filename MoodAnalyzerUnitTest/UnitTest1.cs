@@ -6,21 +6,19 @@ namespace MoodAnalyzerUnitTest
     public class UnitTest1
     {
         [TestMethod]
-        //TC-1.1
+        //TC-1.1 Refactor
         public void GivenSadMood_WhenAnalyze_ShouldReturnSad()
         {
-            string message = "I am in Sad Mood";
-            Mood mood1 = new Mood();
-            string result=mood1.AnalyzeMood(message);
+            Mood mood1 = new Mood("I am in Sad Mood");
+            string result=mood1.AnalyzeMood();
             Assert.AreEqual("SAD", result);
         }
         [TestMethod]
-        //TC-1.2
+        //TC-1.2 Refactor
         public void GivenAnyMood_WhenAnalyze_ShouldReturnHappy()
         {
-            string message = "I am in Any Mood";
-            Mood mood2 = new Mood();
-            string result= mood2.AnalyzeMood(message);
+            Mood mood2 = new Mood("I am in Happy Mood");
+            string result= mood2.AnalyzeMood();
             Assert.AreEqual("HAPPY", result);
         }
     }
