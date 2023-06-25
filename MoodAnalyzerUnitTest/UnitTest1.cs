@@ -11,7 +11,7 @@ namespace MoodAnalyzerUnitTest
         {
             Mood mood1 = new Mood("I am in Sad Mood");
             string result=mood1.AnalyzeMood();
-            Assert.AreEqual("SAD", result);
+            Assert.AreEqual("SAD",  result);
         }
         [TestMethod]
         //TC-1.2 Refactor

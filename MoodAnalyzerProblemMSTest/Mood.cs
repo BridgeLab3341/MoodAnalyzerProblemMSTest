@@ -25,7 +25,7 @@ namespace MoodAnalyzerProblemMSTest
             }
             else
             {
-                return "HAPPY";
+                 return "HAPPY";
             }
         }
     }
