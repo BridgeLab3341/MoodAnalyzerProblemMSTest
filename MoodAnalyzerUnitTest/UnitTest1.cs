@@ -21,5 +21,13 @@ namespace MoodAnalyzerUnitTest
             string result= mood2.AnalyzeMood();
             Assert.AreEqual("HAPPY", result);
         }
+        [TestMethod]
+        //TC-2.1 Handle Exception
+        public void GivenNullMood_WhenAnalyze_ShouldReturnHappy()
+        {
+            Mood mood3 = new Mood("I am in Null Mood");
+            string result= mood3.AnalyzeMood();
+            Assert.AreEqual("HAPPY", result);
+        }
     }
 }
