@@ -29,5 +29,35 @@ namespace MoodAnalyzerUnitTest
             string result= mood3.AnalyzeMood();
             Assert.AreEqual("HAPPY", result);
         }
+        [TestMethod]
+        //TC3.1 (Null_Mood)throw exception
+        public void GivenNullMood_WhenAnalyze_ShouldReturnMoodAnalysisException()
+        {
+            try
+            {
+                Mood mood4 = new Mood("Null Mood");
+                string result= mood4.AnalyzeMood();
+            }
+            catch (MoodAnalyzerException ex)
+            {
+                Assert.AreEqual(ex.Message, "Message is Null");
+            }
+        }
+        [TestMethod]
+        //TC3.2 (Empty_Mood)throw Exception
+        public void GivenEmptyMood_WhenAnalyze_ShouldReturnEmptyMood()
+        {
+           
+            try
+            {
+                string result = null;
+                Mood mood = new Mood(" ");
+                result = mood.AnalyzeMood();
+            }
+            catch(MoodAnalyzerException ex)
+            {
+                Assert.AreEqual(ex.Message, "Message is Empty");
+            }
+        }
     }
 }
