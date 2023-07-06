@@ -46,8 +46,7 @@ namespace MoodAnalyzerUnitTest
         [TestMethod]
         //TC3.2 (Empty_Mood)throw Exception
         public void GivenEmptyMood_WhenAnalyze_ShouldReturnEmptyMood()
-        {
-           
+        {           
             try
             {
                 string result = null;
@@ -57,6 +56,44 @@ namespace MoodAnalyzerUnitTest
             catch(MoodAnalyzerException ex)
             {
                 Assert.AreEqual(ex.Message, "Message is Empty");
+            }
+        }
+        [TestMethod]
+        //TC4.1(ReurnMoodAnalyserObject)
+        public void GivenMoodAnalyzerClassName_WhenAnalyze_SholudreturnMoodAnalyserObject()
+        {
+            object expected = new Mood();
+            object factory = MoodAnalyzerFactory.CreateMoodAnalyser("MoodAnalyzerProblemMSTest.Mood");
+            //Assert.AreEqual(expected, factory);
+            expected.Equals(factory);
+        }
+        [TestMethod]
+        //TC4.2(improperExceptionthrow)
+        public void GivenMoodAnalyzerClassName_WhenImproper_SholudThrowMoodAnalysisException()
+        {
+            try
+            {
+                object expected = new Mood();
+                object factory = MoodAnalyzerFactory.CreateMoodAnalyser("MoodAnalyzerProblemMSTest.Mood");
+            }
+            catch (MoodAnalyzerException ex)
+            {
+                Assert.AreEqual(ex.Message, "No Such Class");
+            }
+        }
+        [TestMethod]
+        //TC4.3(improperExceptionthrow)
+        public void GivenClass_WhenContructorNotImproper_SholudThrowMoodAnalysisException()
+        {
+            try
+            {
+                string className = "MoodAnalyzerProblemMSTest.Mood";
+                string constructorParameter = "InValidParameter";
+                object factory = MoodAnalyzerFactory.CreateMoodAnalyser(className);
+            }
+            catch (MoodAnalyzerException ex)
+            {
+                Assert.AreEqual(ex.Message, "No Such Method Error");
             }
         }
     }
