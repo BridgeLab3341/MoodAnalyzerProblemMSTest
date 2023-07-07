@@ -130,7 +130,7 @@ namespace MoodAnalyzerUnitTest
             }
             catch (MoodAnalyzerException ex)
             {
-                Assert.AreEqual(ex.Message, "No Such Method Error");
+                Assert.AreEqual(ex.Message, "No Such Method Error ");
             }
         }
     }
