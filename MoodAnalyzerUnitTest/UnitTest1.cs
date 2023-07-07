@@ -89,7 +89,7 @@ namespace MoodAnalyzerUnitTest
             {
                 string className = "MoodAnalyzerProblemMSTest.Mood";
                 string constructorParameter = "InValidParameter";
-                object factory = MoodAnalyzerFactory.CreateMoodAnalyser(className);
+                object factory = MoodAnalyzerFactory.CreateMoodAnalyzers(className,constructorParameter);
             }
             catch (MoodAnalyzerException ex)
             {

@@ -31,5 +31,31 @@ namespace MoodAnalyzerProblemMSTest
                 throw new Exception("InValid class Name");
             }
         }
+        public static object CreateMoodAnalyzers(string className, string constructorParameter)
+        {
+            try
+            {
+                Assembly assembly = Assembly.GetExecutingAssembly();
+                Type moodAnalyzerType = assembly.GetType(className);
+                ConstructorInfo constructor = moodAnalyzerType.GetConstructor(new[] { typeof(string) });
+
+                if (constructor == null)
+                    throw new Exception("No such constructor error");
+
+                return Activator.CreateInstance(moodAnalyzerType, constructorParameter);
+            }
+            catch (ArgumentNullException)
+            {
+                throw new Exception("Class name or constructor parameter cannot be null");
+            }
+            catch (ArgumentException)
+            {
+                throw new Exception("Invalid class name or constructor parameter");
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error occurred while creating mood analyzer");
+            }
+        }
     }
 }
