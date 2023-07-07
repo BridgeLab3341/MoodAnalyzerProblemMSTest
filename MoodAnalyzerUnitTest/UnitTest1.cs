@@ -156,5 +156,48 @@ namespace MoodAnalyzerUnitTest
                 Assert.AreEqual(ex.Message, "No Such Method Error");
             }
         }
+        [TestMethod]
+        //TC7.1(6.1-Dynamicaly Invoked)(Set Happy Message Return HAPPY)
+        public void SetHappyMessageWithReflector_WhenAnalyze_ShouldReturnHappy()
+        {
+            //Arrange
+            string message = "I am Sad";
+            Mood mood = new Mood(message);
+            //Act
+            MoodAnalyzerReflector.SetFieldValue(mood, "message", "Happy");
+            string result = mood.AnalyzeMood();
+            //Assert
+            Assert.AreEqual("HAPPY", result);
+        }
+        [TestMethod]
+        //TC7.2(6.2- Field Improper should throw No such field)
+        public void SetField_WhenImproper_ShouldThrowExceptionWithNoSuchFeild()
+        {
+            try
+            {
+                string message = "I am Sad";
+                Mood mood = new Mood(message);
+                MoodAnalyzerReflector.SetFieldValue(mood, "", "Happy");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual(ex.Message, "No Such Field Found");
+            }
+        }
+        [TestMethod]
+        //TC7.3(6.3 Null Message Sholud throw Excption)
+        public void SettingNullMessage_WithReflector_ShouldThrowException()
+        {
+            try
+            {
+                string message = "I am Sad";
+                Mood mood = new Mood(message);
+                MoodAnalyzerReflector.SetFieldValue(mood, "message", null);
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual(ex.Message, "No Such Field Found");
+            }
+        }
     }
 }

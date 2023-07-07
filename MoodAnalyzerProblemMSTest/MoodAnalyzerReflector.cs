@@ -82,5 +82,30 @@ namespace MoodAnalyzerProblemMSTest
                 throw new Exception("Error occurred while invoking AnalyzeMood method");
             }
         }
+        public static void SetFieldValue(object targetObject, string fieldName, object value)
+        {
+            try
+            {
+                Type targetType = targetObject.GetType();
+                FieldInfo field = targetType.GetField(fieldName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+
+                if (field == null)
+                    throw new Exception("No Such Field Found");
+
+                field.SetValue(targetObject, value);
+            }
+            catch (ArgumentNullException)
+            {
+                throw new Exception("Target object or field name cannot be null");
+            }
+            catch (ArgumentException)
+            {
+                throw new Exception("Invalid target object or field name");
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error occurred while setting field value");
+            }
+        }
     }
 }
