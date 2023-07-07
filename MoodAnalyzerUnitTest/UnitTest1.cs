@@ -88,7 +88,44 @@ namespace MoodAnalyzerUnitTest
             try
             {
                 string className = "MoodAnalyzerProblemMSTest.Mood";
-                string constructorParameter = "InValidParameter";
+                //string constructorParameter = "InValidParameter";
+                object factory = MoodAnalyzerFactory.CreateMoodAnalyser(className);
+            }
+            catch (MoodAnalyzerException ex)
+            {
+                Assert.AreEqual(ex.Message, "No Such Method Error");
+            }
+        }
+        [TestMethod]
+        //5.1(Proper Return MoodAnalyzerObject)
+        public void GivenMoodAnalyzer_WhenProper_ShouldReturn_MoodAnalyzerObject()
+        {
+            object expected = new Mood();
+            object factory = MoodAnalyzerFactory.CreateMoodAnalyser("MoodAnalyzerProblemMSTest.Mood");
+            Assert.AreEqual(expected.GetType(), factory.GetType());
+        }
+        [TestMethod]
+        //5.2(ImProper Return MoodAnalyzerException)
+        public void GivenClassName_WhenImProper_ShouldThrow_MoodAnalyzerException()
+        {
+            try
+            {
+                string className = "MoodAnalyzerProblemMSTest.Mood";
+                object factory = MoodAnalyzerFactory.CreateMoodAnalyser(className);
+            }
+            catch (MoodAnalyzerException ex)
+            {
+                Assert.AreEqual(ex.Message, "No Such Class Error");
+            }
+        }
+        [TestMethod]
+        //5.3(ImProper Return MoodAnalyzerException)
+        public void GivenClass_WhenConstructorNotProper_ShouldThrow_MoodAnalyzerException()
+        {
+            try
+            {
+                string className = "MoodAnalyzerProblemMSTest.Mood";
+                //string constructor = "InValidParameter";
                 object factory = MoodAnalyzerFactory.CreateMoodAnalyser(className);
             }
             catch (MoodAnalyzerException ex)
