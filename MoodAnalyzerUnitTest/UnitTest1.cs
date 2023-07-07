@@ -63,7 +63,7 @@ namespace MoodAnalyzerUnitTest
         public void GivenMoodAnalyzerClassName_WhenAnalyze_SholudreturnMoodAnalyserObject()
         {
             object expected = new Mood();
-            object factory = MoodAnalyzerFactory.CreateMoodAnalyser("MoodAnalyzerProblemMSTest.Mood");
+            object factory = MoodAnalyzerReflector.CreateMoodAnalyser("MoodAnalyzerProblemMSTest.Mood");
             //Assert.AreEqual(expected, factory);
             expected.Equals(factory);
         }
@@ -74,7 +74,7 @@ namespace MoodAnalyzerUnitTest
             try
             {
                 object expected = new Mood();
-                object factory = MoodAnalyzerFactory.CreateMoodAnalyser("MoodAnalyzerProblemMSTest.Mood");
+                object factory = MoodAnalyzerReflector.CreateMoodAnalyser("MoodAnalyzerProblemMSTest.Mood");
             }
             catch (MoodAnalyzerException ex)
             {
@@ -89,7 +89,7 @@ namespace MoodAnalyzerUnitTest
             {
                 string className = "MoodAnalyzerProblemMSTest.Mood";
                 string constructorParameter = "InValidParameter";
-                object factory = MoodAnalyzerFactory.CreateMoodAnalyzers(className,constructorParameter);
+                object factory = MoodAnalyzerReflector.CreateMoodAnalyzers(className,constructorParameter);
             }
             catch (MoodAnalyzerException ex)
             {
@@ -101,7 +101,7 @@ namespace MoodAnalyzerUnitTest
         public void GivenMoodAnalyzer_WhenProper_ShouldReturn_MoodAnalyzerObject()
         {
             object expected = new Mood();
-            object factory = MoodAnalyzerFactory.CreateMoodAnalyser("MoodAnalyzerProblemMSTest.Mood");
+            object factory = MoodAnalyzerReflector.CreateMoodAnalyser("MoodAnalyzerProblemMSTest.Mood");
             Assert.AreEqual(expected.GetType(), factory.GetType());
         }
         [TestMethod]
@@ -111,7 +111,7 @@ namespace MoodAnalyzerUnitTest
             try
             {
                 string className = "MoodAnalyzerProblemMSTest.Mood";
-                object factory = MoodAnalyzerFactory.CreateMoodAnalyser(className);
+                object factory = MoodAnalyzerReflector.CreateMoodAnalyser(className);
             }
             catch (MoodAnalyzerException ex)
             {
@@ -126,7 +126,7 @@ namespace MoodAnalyzerUnitTest
             {
                 string className = "MoodAnalyzerProblemMSTest.Mood";
                 string constructor = "InValidParameter";
-                object factory = MoodAnalyzerFactory.CreateMoodAnalyzers(className,constructor);
+                object factory = MoodAnalyzerReflector.CreateMoodAnalyzers(className,constructor);
             }
             catch (MoodAnalyzerException ex)
             {
