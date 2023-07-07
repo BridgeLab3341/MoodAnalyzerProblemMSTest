@@ -133,5 +133,28 @@ namespace MoodAnalyzerUnitTest
                 Assert.AreEqual(ex.Message, "No Such Method Error ");
             }
         }
+        [TestMethod]
+        //6.1(Happy message should return Happy Mood)
+        public void GivenHappyMessage_WhenProper_ShouldReturnHappyMood()
+        {
+            string message = "I am Happy";
+            string result=MoodAnalyzerReflector.InvokeAnalyzeMood(message);
+            Assert.AreEqual("HAPPY", result);
+        }
+        [TestMethod]
+        //6.2(Happy message should return Happy Mood)
+        public void GivenHappyMessage_WhenImProperMethod_ShouldThrowMoodAnalysisException()
+        {
+            try
+            {
+                string message = "I am Happy";
+                string result = MoodAnalyzerReflector.InvokeAnalyzeMood(message);
+
+            }
+            catch(MoodAnalyzerException ex)
+            {
+                Assert.AreEqual(ex.Message, "No Such Method Error");
+            }
+        }
     }
 }

@@ -57,5 +57,30 @@ namespace MoodAnalyzerProblemMSTest
                 throw new Exception("Error occurred while creating mood analyzer");
             }
         }
+        public static string InvokeAnalyzeMood(string message)
+        {
+            try
+            {
+                object moodAnalyzerObject = Activator.CreateInstance(typeof(Mood), message);
+                MethodInfo analyzeMoodMethod = moodAnalyzerObject.GetType().GetMethod("AnalyzeMood");
+                if(analyzeMoodMethod == null)
+                {
+                    throw new Exception("No Such Method Error");
+                }
+                return (string)analyzeMoodMethod.Invoke(moodAnalyzerObject, null);
+            }
+            catch (ArgumentNullException)
+            {
+                throw new Exception("Message cannot be null");
+            }
+            catch (ArgumentException)
+            {
+                throw new Exception("Invalid message");
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error occurred while invoking AnalyzeMood method");
+            }
+        }
     }
 }
